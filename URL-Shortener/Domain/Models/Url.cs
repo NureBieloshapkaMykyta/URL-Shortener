@@ -10,7 +10,7 @@ public class Url
 
     public DateTime ModifiedDate { get; set; }
 
-    public virtual Guid CreatorId { get; set; }
+    public Guid CreatorId { get; set; }
 
-    public AppUser Creator { get; set; }
+    public virtual AppUser Creator { get; set; }
 }

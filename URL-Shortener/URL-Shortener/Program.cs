@@ -1,3 +1,4 @@
+using API.Extensions;
 using Infrastructure;
 using Persistence;
 
@@ -25,6 +26,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+    await app.ApplyMigration();
 }
 
 app.UseCors("CorsPolicy");
