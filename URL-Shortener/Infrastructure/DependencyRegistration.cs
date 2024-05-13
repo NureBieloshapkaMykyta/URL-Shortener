@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions;
 using Infrastructure.Extensions;
-using Infrastructure.Services.Authentication;
+using Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,5 +12,7 @@ public static class DependencyRegistration
     {
         services.AddJwt(configuration);
         services.AddScoped<ITokenService, JwtService>();
+
+        services.AddScoped<IUserService, UserService>();
     }
 }

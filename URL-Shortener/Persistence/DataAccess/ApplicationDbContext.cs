@@ -22,4 +22,15 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
     }
 
     public DbSet<Url> Urls { get; set; }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        var updates = ChangeTracker.Entries<ChangesTrackingEntity>().Where(x => x.State == EntityState.Modified || x.State == EntityState.Added);
+        foreach (var item in updates)
+        {
+            item.Entity.ModifiedDate = DateTime.Now;
+        }
+
+        return base.SaveChangesAsync(cancellationToken);
+    }
 }

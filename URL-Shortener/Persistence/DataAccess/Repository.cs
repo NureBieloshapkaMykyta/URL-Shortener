@@ -1,10 +1,9 @@
 ﻿using Application.Abstractions;
 using Application.Helpers;
 using Microsoft.EntityFrameworkCore;
-using Persistence.DataAccess;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Services.DataAccess;
+namespace Persistence.DataAccess;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
@@ -60,25 +59,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
             return Result.Failure<IEnumerable<TEntity>>($"Cannot get {typeof(TEntity).Name}s");
         }
 
-    }
-
-    public async Task<Result<TEntity>> GetByIdAsync(Guid id)
-    {
-        try
-        {
-            var result = await _dbSet.FindAsync(id);
-
-            if (result is null)
-            {
-                return Result.Failure<TEntity>($"Cannot find {typeof(TEntity).Name}");
-            }
-
-            return Result.Success(result);
-        }
-        catch
-        {
-            return Result.Failure<TEntity>($"Error when finding {typeof(TEntity).Name}");
-        }
     }
 
     public async Task<Result<bool>> UpdateItemAsync(TEntity entityToUpdate)

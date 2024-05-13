@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence.DataAccess;
 
-namespace API.Extensions;
+namespace URL_Shortener.Extensions;
 
 public static class MigrationExtension
 {
-    public static async Task ApplyMigration(this IApplicationBuilder builder) 
+    public static async Task ApplyMigration(this IApplicationBuilder builder)
     {
         var localScope = builder.ApplicationServices.CreateScope();
 
@@ -15,10 +15,10 @@ public static class MigrationExtension
         var roleManager = localScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
 
         dbContext.Database.Migrate();
-        if (!await roleManager.RoleExistsAsync(AppUserRole.Admin.ToString())) 
+        if (!await roleManager.RoleExistsAsync(AppUserRole.Admin.ToString()))
         {
             var userRoles = Enum.GetValues<AppUserRole>();
-            foreach (var userRole in userRoles) 
+            foreach (var userRole in userRoles)
             {
                 await roleManager.CreateAsync(new IdentityRole<Guid>() { Name = userRole.ToString() });
             }

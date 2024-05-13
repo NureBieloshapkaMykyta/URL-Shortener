@@ -1,14 +1,12 @@
 ﻿namespace Domain.Models;
 
-public class Url
+public class Url : ChangesTrackingEntity
 {
     public Guid Id { get; set; }
 
     public string BaseUrl { get; set; }
 
-    public string ShorteredUrl { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
+    public string ShorteredUrlCode { get; set; }
 
     public Guid CreatorId { get; set; }
 

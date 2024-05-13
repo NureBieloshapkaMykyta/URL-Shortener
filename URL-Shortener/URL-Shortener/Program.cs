@@ -1,6 +1,7 @@
-using API.Extensions;
 using Infrastructure;
 using Persistence;
+using URL_Shortener.Extensions;
+using URL_Shortener.MapperProfiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddPersistence(builder.Configuration);
+
+builder.Services.AddIdentity();
+builder.Services.AddAutoMapper(cfg => 
+{
+    cfg.AddProfile<AppUserProfile>();
+});
 
 builder.Services.AddCors(opt =>
 {
