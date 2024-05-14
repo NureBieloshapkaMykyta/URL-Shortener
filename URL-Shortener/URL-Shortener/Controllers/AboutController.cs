@@ -5,7 +5,6 @@ using URL_Shortener.Helpers;
 
 namespace URL_Shortener.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
     public class AboutController : Controller
     {
