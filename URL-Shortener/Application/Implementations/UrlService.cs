@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.Helpers;
+using Domain.Enums;
 using Domain.Models;
 using System.Linq.Expressions;
 
@@ -17,9 +18,9 @@ public class UrlService : IUrlService
         _shortenerHelper = new UrlShortenerHelper();
     }
 
-    public async Task<Result<Url>> GetUrlByCode(string code)
+    public async Task<Result<Url>> GetUrlByShortered(string shortered)
     {
-        var getResult = await GetAllAsync(url=>url.ShorteredUrlCode == code);
+        var getResult = await GetAllAsync(url=>url.ShorteredUrl == shortered);
         if (!getResult.IsSuccessful || !getResult.Data.Any())
         {
             return Result.Failure<Url>("Failed to retrieve item");
@@ -47,8 +48,7 @@ public class UrlService : IUrlService
             return Result.Failure<bool>("Such url already exists");
         }
 
-        entity.ShorteredUrlCode = _shortenerHelper.GenerateSurl();
-
+        entity.ShorteredUrl = BaseUrlConstants.BaseUrl + _shortenerHelper.GenerateSurl();
 
         return await _repository.AddItemAsync(entity);
     }
@@ -73,10 +73,10 @@ public class UrlService : IUrlService
         return await _repository.UpdateItemAsync(entity);
     }
 
-    public async Task<bool> PermissionToDelete(Guid userId, Guid urlId)
+    public async Task<bool> PermissionToDelete(Guid userId, string userRole, Guid urlId)
     {
         var url = await _repository.GetAllAsync(url=>url.Id == urlId);
-        if (url.Data!=null && userId == url.Data.First().CreatorId)
+        if ((userRole == AppUserRole.Admin.ToString()) || (url.Data!=null && userId == url.Data.First().CreatorId))
         {
             return true;
         }

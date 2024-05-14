@@ -19,7 +19,7 @@ public class RedirectController : Controller
     [Route("{id}")]
     public async Task<IActionResult> Redirect([FromRoute] string sourceId)
     {
-        var getUrlResult = await _urlService.GetUrlByCode(sourceId);
+        var getUrlResult = await _urlService.GetUrlByShortered(sourceId);
         if (!getUrlResult.IsSuccessful) 
         {
             return BadRequest(getUrlResult.Message);

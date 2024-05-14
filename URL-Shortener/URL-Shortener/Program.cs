@@ -14,6 +14,7 @@ builder.Services.AddIdentity();
 builder.Services.AddAutoMapper(cfg => 
 {
     cfg.AddProfile<AppUserProfile>();
+    cfg.AddProfile<UrlProfile>();
 });
 
 builder.Services.AddCors(opt =>

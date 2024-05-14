@@ -11,4 +11,12 @@ public static class PrincipalExtension
 
         return Guid.Parse(userId);
     }
+
+    public static string GetRoleFromPrincipal(this ClaimsPrincipal principal)
+    {
+        var userRole = principal.FindFirstValue(ClaimTypes.Role);
+        ArgumentNullException.ThrowIfNull(userRole);
+
+        return userRole;
+    }
 }

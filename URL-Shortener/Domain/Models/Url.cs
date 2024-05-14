@@ -6,7 +6,7 @@ public class Url : ChangesTrackingEntity
 
     public string BaseUrl { get; set; }
 
-    public string ShorteredUrlCode { get; set; }
+    public string ShorteredUrl { get; set; }
 
     public Guid CreatorId { get; set; }
 

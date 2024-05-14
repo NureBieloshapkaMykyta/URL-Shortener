@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions;
 using AutoMapper;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using URL_Shortener.DTOs.Requests;
 using URL_Shortener.Extensions;
@@ -35,5 +36,14 @@ public class AccountController : Controller
         var loginResult = await _userService.AuthenticateUserAsync(request.Username, request.Password);
 
         return this.HandleResult(loginResult);
+    }
+
+    [Authorize]
+    [HttpGet("Logout")]
+    public async Task<IActionResult> Logout() 
+    {
+        await _userService.SignOutAsync();
+
+        return NoContent();
     }
 }
