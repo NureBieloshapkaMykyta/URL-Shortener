@@ -28,7 +28,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
         var updates = ChangeTracker.Entries<ChangesTrackingEntity>().Where(x => x.State == EntityState.Modified || x.State == EntityState.Added);
         foreach (var item in updates)
         {
-            item.Entity.ModifiedDate = DateTime.Now;
+            item.Entity.ModifiedDate = DateTime.UtcNow;
         }
 
         return base.SaveChangesAsync(cancellationToken);

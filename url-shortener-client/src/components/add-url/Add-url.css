@@ -1,0 +1,16 @@
+.add-url {
+    display: flex;
+    justify-content: left;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+    max-width: 300px;
+  }
+
+.input-url{
+margin-right: 30px;
+}
+
+.short-url{
+
+}

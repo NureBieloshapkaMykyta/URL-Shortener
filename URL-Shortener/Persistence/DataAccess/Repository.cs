@@ -33,7 +33,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     }
 
     public async Task<Result<IEnumerable<TEntity>>> GetAllAsync(
-        Expression<Func<TEntity, bool>>? filter = null, int? pageNum = null, int? count = null)
+        Expression<Func<TEntity, bool>>? filter = null)
     {
         try
         {
@@ -41,15 +41,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
             if (filter != null)
             {
                 query = query.Where(filter);
-            }
-
-            if (pageNum != null && count != null)
-            {
-                query = query.Skip((int)(pageNum * count)).Take((int)count);
-            }
-            else if (count != null)
-            {
-                query = query.Take((int)count);
             }
 
             return Result.Success<IEnumerable<TEntity>>(await query.ToListAsync());

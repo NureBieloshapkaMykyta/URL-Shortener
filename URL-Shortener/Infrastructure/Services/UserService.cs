@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.Helpers;
+using Domain.Enums;
 using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -23,13 +24,14 @@ public class UserService : IUserService
 
     public async Task<Result<bool>> RegisterUserAsync(AppUser user)
     {
+        user.Role = AppUserRole.User;
         var registerResult = await _userManager.CreateAsync(user, user.PasswordHash);
         if (!registerResult.Succeeded)
         {
             return Result.Failure<bool>("Failed to create user:\n" + string.Join('\n', registerResult.Errors));
         }
 
-        var addToRoleResult = await _userManager.AddToRoleAsync(user, user.Role.ToString());
+        var addToRoleResult = await _userManager.AddToRoleAsync(user, AppUserRole.User.ToString());
         if (!addToRoleResult.Succeeded)
         {
             return Result.Failure<bool>("Failed to give user role:\n" + string.Join('\n', registerResult.Errors));

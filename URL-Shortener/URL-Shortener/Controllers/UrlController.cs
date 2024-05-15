@@ -55,6 +55,18 @@ public class UrlController : Controller
         return Ok(_mapper.Map<DetailsUrlResponse>(getResult.Data.FirstOrDefault()));
     }
 
+    [HttpGet("full/{code}")]
+    public async Task<IActionResult> GetFullUrl([FromRoute] string code)
+    {
+        var getResult = await _urlService.GetUrlByShortered(code);
+        if (!getResult.IsSuccessful)
+        {
+            return BadRequest(getResult.Message);
+        }
+
+        return Ok(getResult.Data.BaseUrl);
+    }
+
     [HttpGet]
     public async Task<IActionResult> Get()
     {

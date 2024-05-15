@@ -20,7 +20,7 @@ public class UrlService : IUrlService
 
     public async Task<Result<Url>> GetUrlByShortered(string shortered)
     {
-        var getResult = await GetAllAsync(url=>url.ShorteredUrl == shortered);
+        var getResult = await GetAllAsync(url=>url.ShorteredUrl == BaseUrlConstants.BaseUrl + "/test-surl/" + shortered);
         if (!getResult.IsSuccessful || !getResult.Data.Any())
         {
             return Result.Failure<Url>("Failed to retrieve item");
@@ -48,14 +48,14 @@ public class UrlService : IUrlService
             return Result.Failure<bool>("Such url already exists");
         }
 
-        entity.ShorteredUrl = BaseUrlConstants.BaseUrl + _shortenerHelper.GenerateSurl();
+        entity.ShorteredUrl = BaseUrlConstants.BaseUrl + "/test-surl/" + _shortenerHelper.GenerateSurl();
 
         return await _repository.AddItemAsync(entity);
     }
 
-    public async Task<Result<IEnumerable<Url>>> GetAllAsync(Expression<Func<Url, bool>>? predicate = null, int? pageNum = null, int? count = null)
+    public async Task<Result<IEnumerable<Url>>> GetAllAsync(Expression<Func<Url, bool>>? predicate = null)
     {
-        return await _repository.GetAllAsync(predicate, pageNum, count);
+        return await _repository.GetAllAsync(predicate);
     }
 
     public async Task<Result<bool>> DeleteItemAsync(Guid id)

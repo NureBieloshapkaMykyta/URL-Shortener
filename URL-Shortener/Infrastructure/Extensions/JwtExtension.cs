@@ -9,7 +9,7 @@ namespace Infrastructure.Extensions;
 
 public static class JwtExtension
 {
-    public static void AddJwt(this IServiceCollection services, IConfiguration configuration) 
+    public static IServiceCollection AddJwt(this IServiceCollection services, IConfiguration configuration) 
     {
         var jwtIssuer = configuration.GetSection("JwtSettings:Issuer").Get<string>();
         var jwtAudience = configuration.GetSection("JwtSettings:Audience").Get<string>();
@@ -17,7 +17,11 @@ public static class JwtExtension
 
         services.AddScoped<UserSecurityValidation>();
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
          .AddJwtBearer(options =>
          {
              options.TokenValidationParameters = new TokenValidationParameters
@@ -32,5 +36,7 @@ public static class JwtExtension
              };
              options.EventsType = typeof(UserSecurityValidation);
          });
+
+        return services;
     }
 }

@@ -2,5 +2,5 @@
 
 public class BaseUrlConstants
 {
-    public const string BaseUrl = "https://localhost:7239";
+    public const string BaseUrl = "http://localhost:5173";
 }

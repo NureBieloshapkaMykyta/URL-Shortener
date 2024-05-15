@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Persistence.DataAccess;

@@ -6,7 +6,7 @@ namespace URL_Shortener.Extensions;
 
 public static class IdentityExtension
 {
-    public static void AddIdentity(this IServiceCollection services)
+    public static IServiceCollection AddIdentity(this IServiceCollection services)
     {
         services.AddIdentity<AppUser, IdentityRole<Guid>>(options => 
         {
@@ -15,5 +15,7 @@ public static class IdentityExtension
             .AddDefaultTokenProviders()
             .AddRoles<IdentityRole<Guid>>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        return services;
     }
 }

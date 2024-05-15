@@ -20,3 +20,163 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.header {
+    max-height: 50px;
+    margin-bottom: 30px
+}
+
+.nav-list {
+    display: flex;
+    justify-content: right;
+    list-style-type: none;
+    padding: 0
+}
+
+    .nav-list li {
+        margin-right: 30px
+    }
+
+.options-container {
+    display: flex;
+    justify-content: space-between
+}
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px
+}
+
+.signup-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9
+}
+
+.button-container {
+    margin-top: 10px
+}
+
+.link-container {
+    margin-top: 10px
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none
+}
+
+    .link:hover {
+        text-decoration: underline
+    }
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px
+}
+
+.login-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9
+}
+
+.form-group {
+    margin-bottom: 20px
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px
+    }
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer
+}
+
+    button:hover {
+        background-color: #0056b3
+    }
+
+.table-wrapper {
+    margin: 0 auto;
+    max-width: 1000px
+}
+
+.table-container {
+    overflow-y: auto;
+    max-height: 500px
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed
+}
+
+    .table th, .table td {
+        border: 1px solid #d7d7d7;
+        padding: 8px;
+        text-align: left
+    }
+
+    .table th {
+        background-color: #f2f2f2
+    }
+
+.table-wrapper table {
+    position: relative
+}
+
+    .table-wrapper table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f2f2f2;
+        z-index: 1
+    }
+
+.description {
+    margin-bottom: 20px
+}
+
+.add-url {
+    display: flex;
+    justify-content: left;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+    max-width: 300px
+}
+
+.input-url {
+    margin-right: 30px
+}
+
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px
+}

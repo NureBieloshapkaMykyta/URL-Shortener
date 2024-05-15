@@ -2,6 +2,8 @@
 
 public class DetailsUrlResponse
 {
+    public Guid Id { get; set; }
+
     public string BaseUrl { get; set; }
 
     public string ShorteredUrl { get; set; }

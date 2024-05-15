@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URL-Shortener", "URL-Shortener\URL-Shortener.csproj", "{B3D0DE22-A818-43CD-B4ED-37882AA12C30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "URL-Shortener", "URL-Shortener\URL-Shortener.csproj", "{B3D0DE22-A818-43CD-B4ED-37882AA12C30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5CFE7FE5-BC6F-4A62-95F8-46EC93BDE3D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{5CFE7FE5-BC6F-4A62-95F8-46EC93BDE3D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{1C9BB2D4-CC11-45CB-B629-EE06BEA9B6E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{1C9BB2D4-CC11-45CB-B629-EE06BEA9B6E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B8DAB87A-FC41-44F2-9EA3-8147EBC042E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{B8DAB87A-FC41-44F2-9EA3-8147EBC042E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{50D525A6-6E7A-46E7-A2C7-EB06A89C03E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{50D525A6-6E7A-46E7-A2C7-EB06A89C03E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URL-Shortener.tests", "URL-Shortener.tests\URL-Shortener.tests.csproj", "{AF9E66E3-73C4-4E4B-AC7D-5EA3F7B073CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{50D525A6-6E7A-46E7-A2C7-EB06A89C03E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50D525A6-6E7A-46E7-A2C7-EB06A89C03E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50D525A6-6E7A-46E7-A2C7-EB06A89C03E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9E66E3-73C4-4E4B-AC7D-5EA3F7B073CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9E66E3-73C4-4E4B-AC7D-5EA3F7B073CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9E66E3-73C4-4E4B-AC7D-5EA3F7B073CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9E66E3-73C4-4E4B-AC7D-5EA3F7B073CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

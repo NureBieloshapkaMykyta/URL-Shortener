@@ -33,6 +33,7 @@ public class AccountController : Controller
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request) 
     {
+        
         var loginResult = await _userService.AuthenticateUserAsync(request.Username, request.Password);
 
         return this.HandleResult(loginResult);
@@ -42,6 +43,7 @@ public class AccountController : Controller
     [HttpGet("Logout")]
     public async Task<IActionResult> Logout() 
     {
+        var h = Request.Headers.Authorization;
         await _userService.SignOutAsync();
 
         return NoContent();
