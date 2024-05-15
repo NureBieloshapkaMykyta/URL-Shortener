@@ -4,6 +4,7 @@ using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using URL_Shortener.DTOs.Requests;
+using URL_Shortener.DTOs.Responses;
 using URL_Shortener.Extensions;
 
 namespace URL_Shortener.Controllers;
@@ -33,10 +34,21 @@ public class AccountController : Controller
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request) 
     {
-        
         var loginResult = await _userService.AuthenticateUserAsync(request.Username, request.Password);
 
         return this.HandleResult(loginResult);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Details() 
+    {
+        var user = await _userService.GetCurrentUser();
+        if (!user.IsSuccessful)
+        {
+            return BadRequest(user.Message);
+        }
+
+        return Ok(_mapper.Map<DetailsUserResponse>(user.Data));
     }
 
     [Authorize]

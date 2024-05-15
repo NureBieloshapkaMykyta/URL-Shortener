@@ -23,6 +23,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, IdentityRole<Guid
 
     public DbSet<Url> Urls { get; set; }
 
+    public DbSet<AlhoritmInfo> AlhoritmInfos { get; set; }
+
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var updates = ChangeTracker.Entries<ChangesTrackingEntity>().Where(x => x.State == EntityState.Modified || x.State == EntityState.Added);

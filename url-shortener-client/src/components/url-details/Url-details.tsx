@@ -10,10 +10,12 @@ interface UrlDetailsProps {
 export const UrlDetails: React.FC<UrlDetailsProps> = ({ id }) => {
   const [detailsUrl, setDetailsUrl] = useState<DetailsUrl>();
   const [redirect, setRedirect] = useState<boolean>(false);
+  const [permissionToDelete, setPermissionToDelete] = useState<boolean>(false);
   const [deleteError, setDeleteError] = useState<string>("");
 
   useEffect(() => {
     url.getById(id).then(response => setDetailsUrl(response));
+    url.permissionToDelete(id).then(()=>setPermissionToDelete(true)).catch(()=>setPermissionToDelete(false))
   }, [])
 
   const deleteHandler = () => {
@@ -54,7 +56,7 @@ export const UrlDetails: React.FC<UrlDetailsProps> = ({ id }) => {
           <span>{detailsUrl?.creator.username}</span>
         </div><br />
         <div>
-          <button style={{backgroundColor:'red'}} onClick={deleteHandler}>Delete</button>
+          {permissionToDelete?<button style={{backgroundColor:'red'}} onClick={deleteHandler}>Delete</button>:null}
           {deleteError!=="" ? <p>{deleteError}</p> : null}
         </div>
       </form>

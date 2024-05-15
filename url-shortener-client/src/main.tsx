@@ -7,6 +7,7 @@ import Login from './components/login/Login.tsx'
 import Table from './components/table/Table.tsx'
 import { UrlDetailsWrapper } from './components/url-details/Url-details.tsx'
 import { RedirectWrapper } from './components/redirect/Redirect.tsx'
+import { About } from './components/about/About.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path='/' element={<Table />} />
         <Route path='/:urlid' element={<UrlDetailsWrapper />} />
         <Route path='/Login' element={<Login/>} />
+        <Route path='/About' element={<About/>} />
         <Route path='/Sign-up' element={<SignUp/>}/>
         <Route path='/test-surl/:code' element={<RedirectWrapper />}/>
       </Routes>

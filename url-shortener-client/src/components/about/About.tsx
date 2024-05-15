@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import './About.css';
+import { about, account, roles } from '../../api/Agent';
 
 export const About: React.FC = () => {
-    const [user]
+    const [user, setUser] = useState<DetailsUser>({username:"", role:1});
+    const [description, setDescription] = useState<AlhoritmInfo>({id:'',name:'',description:''});
+    const [update, setUpdate] = useState<boolean>(false);
+    const [inputDescription, setInputDescription] = useState<string>("");
+
+    useEffect(() => {
+      account.details().then(response=>setUser(response));
+      about.get().then(response=>setDescription(response));
+    }, [])
+
+    const updateHandler = () => {
+      setUpdate(!update);
+    }
+
+    const descriptionChangeHandler =(e:any) => {
+      setInputDescription(e.target.value)
+    }
+
+    const updateDescriptionHandler = () => {
+      about.update(description.id,{description:inputDescription}).then(()=>{
+        setUpdate(false);
+      })
+    }
+
   return (
     <div className='form-container '>
       <h2>Details URL Form</h2>
-      <form>
-        <div>
-          <label>Base URL: </label>
-          <p  style={{overflow:'auto'}}><a href={detailsUrl?.baseUrl}>{detailsUrl?.baseUrl}</a></p>
-          
-        </div><br />
-        <div>
-          <label>Shortered URL: </label>
-          <a href={detailsUrl?.shorteredUrl}>{detailsUrl?.shorteredUrl}</a>
-        </div><br />
-        <div>
-          <label>Modified Date: </label>
-          <span>{detailsUrl?.modifiedDate}</span>
-        </div><br />
-        <div>
-          <label>Creator: </label>
-          <span>{detailsUrl?.creator.username}</span>
-        </div><br />
-        <div>
-          <button style={{backgroundColor:'red'}} onClick={deleteHandler}>Delete</button>
-          {deleteError!=="" ? <p>{deleteError}</p> : null}
-        </div>
-      </form>
+      {update?
+      (<div><input style={{marginBottom:'10px'}} type="text" placeholder={description?.description} onChange={e=>descriptionChangeHandler(e)} /><button style={{marginBottom:'20px'}} onClick={updateDescriptionHandler}>Save</button></div> ):
+      (<p>{description?.description}</p>)}
+      {roles[user.role]==="Admin" ? (<button onClick={updateHandler}>Update</button>) : null}
     </div>
   );
 };

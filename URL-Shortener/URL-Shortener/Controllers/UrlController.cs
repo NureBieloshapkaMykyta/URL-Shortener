@@ -81,6 +81,18 @@ public class UrlController : Controller
     }
 
     [Authorize]
+    [HttpGet("CheckDeletePermissions/{id}")]
+    public async Task<IActionResult> CheckDeletePermissions([FromRoute] Guid id)
+    {
+        if (!(await _urlService.PermissionToDelete(User.GetIdFromPrincipal(), User.GetRoleFromPrincipal(), id)))
+        {
+            return Forbid("No permission");
+        }
+
+        return Ok(true);
+    }
+
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
     {

@@ -15,3 +15,22 @@ interface DetailsUrl {
 interface DisplayUser {
     username: string
 }
+
+interface DetailsUser {
+    username: string
+    role:number
+}
+
+interface DisplayAlhoritmDescriptionVM {
+    description: string
+}
+
+interface UpdateDescriptionRequest {
+    description:string
+}
+
+interface AlhoritmInfo {
+    id:string,
+    name:string,
+    description:string
+}

@@ -11,5 +11,6 @@ public class AppUserProfile : Profile
     {
         CreateMap<RegisterAccountRequest, AppUser>().ForMember(mem => mem.PasswordHash, opt => opt.MapFrom(src => src.Password));
         CreateMap<AppUser, DisplayUserResponse>();
+        CreateMap<AppUser, DetailsUserResponse>();
     }
 }
