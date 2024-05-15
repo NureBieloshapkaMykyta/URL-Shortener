@@ -3,7 +3,6 @@ using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using URL_Shortener.DTOs.Requests;
-using URL_Shortener.DTOs.ViewModels;
 using URL_Shortener.Extensions;
 using URL_Shortener.Helpers;
 
